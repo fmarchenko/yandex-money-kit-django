@@ -30,6 +30,7 @@ class Payment(models.Model):
         )
 
     class PAYMENT_TYPE:
+        SAFE = ''
         PC = 'PC'
         AC = 'AC'
         GP = 'GP'
@@ -43,6 +44,7 @@ class Payment(models.Model):
         CR = 'CR'
 
         CHOICES = (
+            (SAFE, 'Выбор на стороне Яндекс.Кассы'),
             (PC, 'Кошелек Яндекс.Деньги'),
             (AC, 'Банковская карта'),
             (GP, 'Наличными через кассы и терминалы'),
@@ -85,7 +87,7 @@ class Payment(models.Model):
     article_id = models.PositiveIntegerField(
         'Идентификатор товара', blank=True, null=True)
     payment_type = models.CharField(
-        'Способ платежа', max_length=2, default=PAYMENT_TYPE.PC,
+        'Способ платежа', max_length=2, default=PAYMENT_TYPE.SAFE,
         choices=PAYMENT_TYPE.CHOICES)
     order_number = models.CharField(
         'Номер заказа', max_length=64,
